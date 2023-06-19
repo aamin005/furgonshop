@@ -6,9 +6,9 @@ import Rating from "../components/Rating";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { listProductDetails } from "../actions/productActions";
+// import axios from 'axios'
 
-
-function ProductScreen({ match }) {
+function ProductScreen() {
   
   const { id } = useParams();
 
@@ -20,8 +20,10 @@ function ProductScreen({ match }) {
     dispatch(listProductDetails(id));
   }, [dispatch, id]);
 
+
+
   return (
-    <div className="productDetails">
+    <div>
       <Link to="/" className="btn btn-light my-3">
         Go Back
       </Link>
@@ -82,8 +84,6 @@ function ProductScreen({ match }) {
             </Col>
           </Row>
       )}
-
-
     </div>
   );
 }

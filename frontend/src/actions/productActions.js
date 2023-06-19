@@ -8,9 +8,10 @@ import {
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
 
-
 } from "../constants/productConstants";
 
+
+// LIST_PRODUCTS
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
@@ -32,7 +33,7 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
-
+// LIST_PRODUCT_DETAILS
 export const listProductDetails = (id) => async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_DETAILS_REQUEST });
