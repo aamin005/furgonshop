@@ -7,7 +7,7 @@ from typing import Dict, Any
 
 from .products import products
 from .models import Product
-from .serializer import ProductSerializer, UserSerializer
+from .serializer import ProductSerializer, UserSerializer, UserSerializerWithToken
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -17,8 +17,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs: Dict[str, Any]) -> Dict[str, str]:
         data = super().validate(attrs)
         
-        data['username'] = self.user.username
-        data['email'] = self.user.email
+        serializer = UserSerializerWithToken(self.user).data
+        
+        for k, v in serializer.items():
+            data[k] = v
 
         return data
     
