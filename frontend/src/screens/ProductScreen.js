@@ -16,7 +16,7 @@ import Message from "../components/Message";
 import { listProductDetails } from "../actions/productActions";
 
 // PRODUCT_SCREEN
-function ProductScreen() {
+function ProductScreen({match}) {
   const [qty, setQty] = useState(1);
 
   const { id } = useParams();
@@ -101,7 +101,7 @@ function ProductScreen() {
                       {/* *******QTY OF STOCK SELECTOR******** */}
                       {product.countInStock > 0 && (
                         <ListGroup.Item>
-                          <Row>
+                          <Row >
                             <Col>Qty :</Col>
                             <Col xs='auto' className="my-1">
                               <Form.Control 
@@ -126,14 +126,16 @@ function ProductScreen() {
 
                       {/* ******* BUTTON "AT TO CART"******** */}
                       <ListGroup.Item>
-                        <Button
-                          onClick={addToCartHandler}
-                          className="btn-block"
-                          disabled={product.countInStock === 0}
-                          type="button"
-                        >
-                          Add to Cart
-                        </Button>
+                        <div className="d-grid gap-2">
+                          <Button
+                            onClick={addToCartHandler}
+                            className="btn-block"
+                            disabled={product.countInStock === 0}
+                            type="button"
+                          >
+                            Add to Cart
+                          </Button>
+                        </div>
                       </ListGroup.Item>
                     </ListGroup>
                   </Card>
