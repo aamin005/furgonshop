@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   Link,
   useParams,
-  useLocation,
   useSearchParams,
   useNavigate,
 } from "react-router-dom";
@@ -17,12 +16,12 @@ import {
   Form,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 
 function CartScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [searchParms, setSearchParams] = useSearchParams();
+  const [searchParms] = useSearchParams();
 
   const productId = id;
   // const qty = location.search ? Number(location.search.split("=")[1]) : 1;
@@ -39,8 +38,9 @@ function CartScreen() {
     }
   }, [dispatch, productId, qty]);
 
-  const removeFromeCartHandler = (id) => {
-    console.log("remove:", id);
+  const removeFromCartHandler = (id) => {
+    // console.log("remove:", id);
+    dispatch(removeFromCart(id))
   };
 
   const checkoutHandler = () => {
@@ -88,7 +88,7 @@ function CartScreen() {
                     <Button
                       type="button"
                       variant="light"
-                      onClick={() => removeFromeCartHandler(item.product)}
+                      onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className="fas fa-trash"></i>
                     </Button>
